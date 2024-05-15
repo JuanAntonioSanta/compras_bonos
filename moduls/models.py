@@ -1,34 +1,4 @@
-# class Categoria():
-#     id = 0
-
-#     def __init__(self, categoria):
-#         self.__id = Categoria.id + 1
-#         self.__categoria = categoria
-
-#         Categoria.id += 1
-
-#     @property
-#     def id(self):
-#         return self.__id
-    
-#     @property
-#     def categoria(self):
-#         return self.__categoria
-    
-#     @categoria.setter
-#     def categoria(self, categoria):
-#         self.__categoria = categoria
-
-#     # Métodos de base de datos
-
-#     def select(self):
-#         db_select(self)
-
-#     def insert(self):
-#         insert(self)
-
-#     def update(self):
-#         update(self)
+from bonos_db.bonos_db_carritos import insertar_carrito, update_carrito
 
         
 
@@ -135,6 +105,11 @@ class Bono():
     def estado(self, estado_nuevo):
         self.__estado = estado_nuevo
 
+    #Representacion textual
+
+    def __str__(self):
+        return f"{self.codigo}  Descuento:{self.descuento} Válido hasta:{self.fecha}"
+
     # Métodos de base de datos
 
     def insert(self):
@@ -154,6 +129,7 @@ class Carrito():
     def __init__(self, lista_articulos):
         self.__id = Carrito.id + 1
         self.__lista_articulos = lista_articulos
+        self.insert()
 
         Carrito.id += 1
     
@@ -177,21 +153,21 @@ class Carrito():
     # Métodos de base de datos
 
     def insert(self):
-        db_insert(self.__id, self.__lista_articulos)
+        insertar_carrito(self)
 
     def update(self):
-        db_update(self.__id)
+        update_carrito(self)
 
-    def select(self):
-        db_select(self.__id)
+    # def select(self):
+    #     db_select(self)
 
 class Cliente():
-    id = 0
 
     def __init__(self, nombre_usuario, passwd):
         self.__username = nombre_usuario
         self.__passwd = passwd
         self.__carrito = Carrito([]) # cada cliente tiene su carrito de compra creado en vacio
+        self.__bono = None
 
     @property
     def username(self):
@@ -216,6 +192,14 @@ class Cliente():
     @carrito.setter
     def carrito(self, lista):
         self.__carrito = lista.copy()
+
+    @property
+    def bono(self):
+        return self.__bono
+    
+    @bono.setter
+    def bono(self, valor):
+        self.__bono = valor
         
 
     # Métodos de base de datos
@@ -231,5 +215,36 @@ class Cliente():
         db_update(self)
 
 
+# class Categoria():
+#     id = 0
+
+#     def __init__(self, categoria):
+#         self.__id = Categoria.id + 1
+#         self.__categoria = categoria
+
+#         Categoria.id += 1
+
+#     @property
+#     def id(self):
+#         return self.__id
+    
+#     @property
+#     def categoria(self):
+#         return self.__categoria
+    
+#     @categoria.setter
+#     def categoria(self, categoria):
+#         self.__categoria = categoria
+
+#     # Métodos de base de datos
+
+#     def select(self):
+#         db_select(self)
+
+#     def insert(self):
+#         insert(self)
+
+#     def update(self):
+#         update(self)
     
     

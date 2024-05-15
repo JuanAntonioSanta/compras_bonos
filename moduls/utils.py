@@ -1,5 +1,6 @@
-from moduls.models import Cliente, Articulo
-from moduls.bonos_db import select_all_articulos
+from moduls.models import Cliente, Articulo, Bono
+from bonos_db.bonos_db_articulos import select_all_articulos
+from bonos_db.bonos_db_bonos import select_all_bonos
 
 
 
@@ -46,15 +47,7 @@ def login(registrado = True):
                 return usuario_actual
             
 
-def listar_articulos(): # convertimos lo que nos devuelve la base de datos en una lista iterable de objetos tipo articulo
-    lista_articulos = select_all_articulos() #selecciona todos los objetos
-    lista_articulos_final =[]
 
-    for articulo in lista_articulos:
-        articulo = Articulo(nombre, descripcion, precio, id)
-        lista_articulos_final.append(articulo)
-
-    return lista_articulos_final
 
 
 def presentar_articulos(lista_articulos, usuario):
@@ -73,5 +66,42 @@ def presentar_articulos(lista_articulos, usuario):
         if input("¿Quiere añadir otro? (s/n)") == "n":
             anyadir_otro = False
 
+def listar_articulos(): # convertimos lo que nos devuelve la base de datos en una lista iterable de objetos tipo articulo
+    lista_articulos = select_all_articulos() #selecciona todos los objetos
+    lista_articulos_final =[]
 
+    for articulo in lista_articulos:
+        articulo = Articulo(nombre, descripcion, precio, id)
+        lista_articulos_final.append(articulo)
+
+    return lista_articulos_final
+
+def listar_bonos(): # convertimos lo que nos devuelve la base de datos en una lista iterable de objetos tipo articulo
+    lista_bonos = select_all_bonos() #selecciona todos los objetos
+    lista_bonos_final =[]
+
+    for bono in lista_bonos:
+        bono = Bono(codigo, fecha, porcentaje, estado)
+        lista_bonos_final.append(bono)
+
+    return lista_bonos_final
+
+def seleccionar_bonos(lista_objetos_bono, usuario):
+    codigo_introducido = input("Introduce el código (8 dígitos): ")
+    bono_seleccionado = None
+    estado = ""
+
+    for bono in lista_objetos_bono:
+        if bono.codigo == codigo_introducido:
+            bono_seleccionado = bono
+            
+
+    if bono_seleccionado == None:
+        return "Código incorrecto"
     
+    elif bono_seleccionado.estado == "D":
+        return "Código no válido"
+
+    else:
+        usuario.bono = bono_seleccionado
+        return f"{usuario.bono}\nBono seleccionado"

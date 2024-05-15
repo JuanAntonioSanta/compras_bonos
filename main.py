@@ -1,12 +1,24 @@
 from moduls.models import *
 from moduls.utils import *
+from bonos_db.bonos_db_articulos import iniciar_tabla as iniciar_art
+from bonos_db.bonos_db_bonos import iniciar_tabla as iniciar_bonos
+from bonos_db.bonos_db_clientes import iniciar_tabla as iniciar_cli
+from bonos_db.bonos_db_carritos import iniciar_tabla as iniciar_car
 
 PRECIO_MINIMO = 50
 
 finalizar = False
 eleccion = None
 usuario = None
-lista_objetos = listar_articulos()
+
+iniciar_art()
+iniciar_bonos()
+iniciar_cli()
+iniciar_car()
+
+
+lista_objetos_articulo = listar_articulos()
+lista_objetos_bono = listar_articulos()
 
 
 
@@ -20,9 +32,6 @@ menu_compra = [
     "2. Añadir Bono",
     "3. Salir"
 ]
-
-
-
 
 
 while not finalizar:
@@ -55,10 +64,10 @@ while not finalizar:
 
         else:
             if eleccion == 1: # Escoge añadir articulos
-                presentar_articulos(lista_objetos, usuario)
+                presentar_articulos(lista_objetos_articulo, usuario)
 
             elif eleccion == 2: # Escoge añadir bono
-                pass
+                print(seleccionar_bonos(lista_objetos_bono, usuario))
 
             else: # Escoge salir, hay que cobrarle
                 pass
