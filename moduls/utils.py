@@ -1,4 +1,7 @@
-from moduls.models import Cliente
+from moduls.models import Cliente, Articulo
+from moduls.bonos_db import select_all_articulos
+
+
 
 def presentar_menu(menu):
     eleccion_correcta = False
@@ -21,11 +24,6 @@ def presentar_menu(menu):
             return "Valor no válido"
 
 
-
-
-
-
-
 def login(registrado = True):
     loggeado = False
 
@@ -46,3 +44,34 @@ def login(registrado = True):
             else:
                 loggeado = True
                 return usuario_actual
+            
+
+def listar_articulos(): # convertimos lo que nos devuelve la base de datos en una lista iterable de objetos tipo articulo
+    lista_articulos = select_all_articulos() #selecciona todos los objetos
+    lista_articulos_final =[]
+
+    for articulo in lista_articulos:
+        articulo = Articulo(nombre, descripcion, precio, id)
+        lista_articulos_final.append(articulo)
+
+    return lista_articulos_final
+
+
+def presentar_articulos(lista_articulos, usuario):
+    anyadir_otro = True
+
+    while anyadir_otro:
+        for articulo in lista_articulos:
+            print(articulo)
+
+        nombre_articulo = input("Introduce el nombre del artículo que quieras añadir: ")
+
+        for articulo in lista_articulos:
+            if articulo.nombre == nombre_articulo:
+                usuario.carrito.add_articulo(articulo)
+
+        if input("¿Quiere añadir otro? (s/n)") == "n":
+            anyadir_otro = False
+
+
+    

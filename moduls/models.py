@@ -80,16 +80,18 @@ class Articulo():
     def precio(self, decimal):
         self.__precio = decimal
 
+    # Representacion textual
+    def __str__(self):
+        return f"{self.__nombre}: {self.__descripcion}   {self.__precio}€"
+
+
+
     # Métodos de base de datos
     def insert(self):
         db_insert(self.__id)
 
     def select_id(self):
         db_select(self.__id)
-    
-    def select_all(self):
-        #selecionamos todos los articulos de la base de datos
-        db_select()
 
 class Bono():
     #creamos la clase bono rescatándola de la base de datos
@@ -166,6 +168,11 @@ class Carrito():
     @lista_articulos.setter
     def lista_articulos(self, lista_articulos_nueva):
         self.__lista_articulos = lista_articulos_nueva
+
+    # Métodos con el articulo
+        
+    def add_articulo(self, articulo):
+        self.__lista_articulos.append(articulo)
 
     # Métodos de base de datos
 
