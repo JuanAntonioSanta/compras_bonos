@@ -1,5 +1,4 @@
 import mysql.connector
-from moduls.models import Carrito
 
 CONFIG = { # Configuramos los parámetros para la base de datos
     'host' : 'db',

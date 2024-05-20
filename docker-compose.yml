@@ -7,7 +7,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./utiles/conectar.py:/code/.
+      - ./main.py:/code/main.py
 
   db:
     image: mysql:latest
