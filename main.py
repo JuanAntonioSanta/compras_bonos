@@ -1,7 +1,6 @@
 from moduls.models import *
 from moduls.utils import *
-from bonos_db.iniciar_db import iniciar_database, conexion
-
+from moduls.prueba import *
 
 
 PRECIO_MINIMO = 50
@@ -10,12 +9,10 @@ finalizar = False
 eleccion = None
 usuario = None
 
-conexion = conexion()
 iniciar_database()
 
 lista_objetos_articulo = listar_articulos()
 lista_objetos_bono = listar_bonos()
-
 
 
 menu_usuario = [
@@ -28,6 +25,7 @@ menu_compra = [
     "2. Añadir Bono",
     "3. Salir"
 ]
+
 
 
 while not finalizar:
@@ -70,20 +68,4 @@ while not finalizar:
                 print(f"El precio total es:  {precio_total}€")
                 print(f"Se le ha descontado:  {descontado}€")
                 print(f"El precio final es:  {precio_final}€")
-                finalizar = True
-
-    
-    
-        
-    
-    
-
-    
-    
-
-
-    
-            
-            
-
-    
+                finalizar = True    

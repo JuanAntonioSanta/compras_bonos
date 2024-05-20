@@ -1,5 +1,4 @@
-from bonos_db.bonos_db_carritos import insertar_carrito, update_carrito
-from bonos_db.bonos_db_clientes import insertar_cliente, seleccionar_usuario
+from moduls.prueba import *
 
 
 class Articulo():

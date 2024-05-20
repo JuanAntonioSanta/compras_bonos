@@ -1,4 +1,6 @@
-from bonos_db.iniciar_db import conexion
+from moduls.iniciar_db import iniciar_database
+
+conexion = iniciar_database()
 
 
 def iniciar_tabla():

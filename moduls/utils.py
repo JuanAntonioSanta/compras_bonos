@@ -1,6 +1,6 @@
 from moduls.models import Cliente, Articulo, Bono
-from bonos_db.bonos_db_articulos import select_all_articulos
-from bonos_db.bonos_db_bonos import select_all_bonos
+from moduls.prueba import *
+
 
 
 
