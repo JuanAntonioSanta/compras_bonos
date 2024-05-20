@@ -16,25 +16,24 @@ def iniciar_database():
     'password' :'admin'
     }
 
-    conexion = conexion(CONFIG)
-
-    iniciar_bonos(conexion)
-    iniciar_car(conexion)
-    iniciar_cli(conexion)
-    iniciar_art(conexion)
-
-def conexion(CONFIG):
-
     if not conexion:
         while not conexion:
             try:
                 conexion = mysql.connector.connect(**CONFIG)
+                iniciar_bonos(conexion)
+                iniciar_car(conexion)
+                iniciar_cli(conexion)
+                iniciar_art(conexion)
             except:
                 sleep(2)
-
-        return conexion
+        
     else:
         return conexion
+    
+
+    
+
+
     
 
 

@@ -1,6 +1,7 @@
 from moduls.models import *
 from moduls.utils import *
-from bonos_db.iniciar_db import iniciar_database
+from bonos_db.iniciar_db import iniciar_database, conexion
+
 
 
 PRECIO_MINIMO = 50
@@ -9,6 +10,7 @@ finalizar = False
 eleccion = None
 usuario = None
 
+conexion = conexion()
 iniciar_database()
 
 lista_objetos_articulo = listar_articulos()
