@@ -1,18 +1,10 @@
-import mysql.connector
+from bonos_db.iniciar_db import conexion
 
-CONFIG = { # Configuramos los parámetros para la base de datos
-    'host' : 'db',
-    'port':'3306',
-    'database':'bonos_db',
-    'user' :'root',
-    'password' :'admin'
-    }
-
-conexion = mysql.connector.connect(**CONFIG)
 
 
 def iniciar_tabla():
-    cursor = conexion.cursor()
+    con = conexion()
+    cursor = con.cursor()
     resultado = cursor.execute("select * from clientes;")
     if not resultado:
         cursor.execute("drop table if exists clientes;",
@@ -20,3 +12,13 @@ def iniciar_tabla():
                        "insert into clientes values ('Mowgli', 'estoyTOloco');",
                        "insert into clientes values ('Balu', 'estaTOloco');")
                        
+def insertar_cliente(cliente):
+    con = conexion()
+    cursor = con.cursor()
+    cursor.execute(f"insert into clientes values ('{cliente.username}', '{cliente.passwd}');")
+
+def seleccionar_usuario(cliente):
+    con = conexion()
+    cursor = con.cursor()
+    resultado = cursor.execute(f"select * from clientes where nombre_usuario like '{cliente.username}' and passwd like '{cliente.passwd}';")
+    return resultado

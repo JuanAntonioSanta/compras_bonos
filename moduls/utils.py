@@ -39,7 +39,7 @@ def login(registrado = True):
             return usuario_actual
         
         else:
-            if not usuario_actual.select(): #El usuario no existe, hay que crearlo
+            if not usuario_actual.select():
                 return "Usuario o contraseña no válido."
             
             else:
@@ -66,13 +66,15 @@ def presentar_articulos(lista_articulos, usuario):
         if input("¿Quiere añadir otro? (s/n)") == "n":
             anyadir_otro = False
 
+
+
 def listar_articulos(): # convertimos lo que nos devuelve la base de datos en una lista iterable de objetos tipo articulo
     lista_articulos = select_all_articulos() #selecciona todos los objetos
     lista_articulos_final =[]
 
     for articulo in lista_articulos:
-        articulo = Articulo(nombre, descripcion, precio, id)
-        lista_articulos_final.append(articulo)
+        articulo_objeto = Articulo(articulo[1], articulo[2], articulo[3], articulo[0])
+        lista_articulos_final.append(articulo_objeto)
 
     return lista_articulos_final
 
@@ -81,8 +83,8 @@ def listar_bonos(): # convertimos lo que nos devuelve la base de datos en una li
     lista_bonos_final =[]
 
     for bono in lista_bonos:
-        bono = Bono(codigo, fecha, porcentaje, estado)
-        lista_bonos_final.append(bono)
+        bono_objeto = Bono(bono[0], bono[1], bono[2], bono[3])
+        lista_bonos_final.append(bono_objeto)
 
     return lista_bonos_final
 

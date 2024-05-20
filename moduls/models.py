@@ -1,6 +1,5 @@
 from bonos_db.bonos_db_carritos import insertar_carrito, update_carrito
-
-        
+from bonos_db.bonos_db_clientes import insertar_cliente, seleccionar_usuario
 
 
 class Articulo():
@@ -57,11 +56,11 @@ class Articulo():
 
 
     # Métodos de base de datos
-    def insert(self):
-        db_insert(self.__id)
+    # def insert(self):
+    #     db_insert(self.__id)
 
-    def select_id(self):
-        db_select(self.__id)
+    # def select_id(self):
+    #     db_select(self.__id)
 
 class Bono():
     #creamos la clase bono rescatándola de la base de datos
@@ -112,15 +111,15 @@ class Bono():
 
     # Métodos de base de datos
 
-    def insert(self):
-        db_insert(self.__id)
+    # def insert(self):
+    #     db_insert(self.__id)
 
-    def select_id(self):
-        db_select(self.__id)
+    # def select_id(self):
+    #     db_select(self.__id)
     
-    def update(self):
-        #selecionamos todos los articulos de la base de datos
-        db_update(self.__id)
+    # def update(self):
+    #     #selecionamos todos los articulos de la base de datos
+    #     db_update(self.__id)
         
     
 class Carrito():
@@ -213,14 +212,11 @@ class Cliente():
 
     def select(self):
         # Devuelve true of false dependiendo de si el usuario existe o no
-        db_select(self)
+        seleccionar_usuario(self)
 
     def insert(self):
-        db_insert(self)
-
-    def update(self):
-        db_update(self)
-
+        insertar_cliente(self)
+        
     #Método finalizar compra
     def finalizar_compra(self):
         precio_total = self.carrito.total()
