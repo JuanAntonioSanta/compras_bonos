@@ -70,7 +70,11 @@ while not finalizar:
                 print(seleccionar_bonos(lista_objetos_bono, usuario))
 
             else: # Escoge salir, hay que cobrarle
-                pass
+                precio_total, descontado, precio_final = usuario.finalizar_compra()
+                print(f"El precio total es:  {precio_total}€")
+                print(f"Se le ha descontado:  {descontado}€")
+                print(f"El precio final es:  {precio_final}€")
+                finalizar = True
 
     
     

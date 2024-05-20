@@ -89,7 +89,6 @@ def listar_bonos(): # convertimos lo que nos devuelve la base de datos en una li
 def seleccionar_bonos(lista_objetos_bono, usuario):
     codigo_introducido = input("Introduce el código (8 dígitos): ")
     bono_seleccionado = None
-    estado = ""
 
     for bono in lista_objetos_bono:
         if bono.codigo == codigo_introducido:
@@ -100,7 +99,7 @@ def seleccionar_bonos(lista_objetos_bono, usuario):
         return "Código incorrecto"
     
     elif bono_seleccionado.estado == "D":
-        return "Código no válido"
+        return "Bono caducado"
 
     else:
         usuario.bono = bono_seleccionado

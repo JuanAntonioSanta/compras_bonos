@@ -65,7 +65,7 @@ class Articulo():
 
 class Bono():
     #creamos la clase bono rescatándola de la base de datos
-    def __init__(self, codigo, fecha, porcentaje, estado):
+    def __init__(self, codigo, fecha, estado, porcentaje = 0):
         self.__codigo = codigo
         self.__fecha = fecha
         self.__porcentaje = porcentaje
@@ -160,6 +160,13 @@ class Carrito():
 
     # def select(self):
     #     db_select(self)
+        
+    def total(self):
+        total = 0
+        for articulo in self.__lista_articulos:
+            total += articulo.__precio
+        
+        return total
 
 class Cliente():
 
@@ -213,6 +220,14 @@ class Cliente():
 
     def update(self):
         db_update(self)
+
+    #Método finalizar compra
+    def finalizar_compra(self):
+        precio_total = self.carrito.total()
+        descuento = precio_total * self.bono.porcentaje
+        precio_final = precio_total - descuento
+
+        return precio_total, descuento, precio_final
 
 
 # class Categoria():
